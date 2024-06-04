@@ -2,7 +2,7 @@ package database
 
 import (
 	"fmt"
-	//"rutube_test/generateuserdata"
+	"rutube_test/helper"
 	"time"
 )
 
@@ -17,14 +17,13 @@ func MakeListOfUser(count int) []UserDataForBirth {
 }
 
 func GenerateUserData(user *UserDataForBirth) {
-	//user.BirthDate = generateuserdata.GenerateRandomDate()
-	//random initialization of names and surnames from the lists above
-	// name, surname := generateuserdata.GenerateUserNameAndSurname()
-	// user.Name = name
-	// user.Surname = surname
 
-	//random initialization of date
-	//user.BirthDate = generateuserdata.GenerateRandomDate(1990, 2006)
+	name, surname := helper.GenerateUserNameAndSurname()
+	user.Name = name
+	user.Surname = surname
+
+	user.BirthDate = helper.GenerateRandomDate(1990, 2006)
+
 }
 
 func GenerateListOfUser(users *[]UserDataForBirth) {
