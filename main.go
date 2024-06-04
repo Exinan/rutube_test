@@ -5,7 +5,7 @@ import (
 )
 
 func main() {
-	users := database.MakeListOfUser(10)
-	database.GenerateListOfUser(&users)
-	database.PrintList(users)
+	var user database.UserDataForBirth
+	database.GenerateUserData(&user)
+	database.PrintUser(user)
 }
