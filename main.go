@@ -1,14 +1,17 @@
 package main
 
 import (
-	"rutube_test/database"
-	"rutube_test/helper"
-	"time"
+	"fmt"
+	//"rutube_test/database"
+	"rutube_test/generateuserdata"
 )
 
 func main() {
-	a := database.UserDataForBirth{Name: "123", Surname: "456", BirthDate: time.Now()}
+	// users := database.MakeListOfUser(10)
+	// database.GenerateListOfUser(&users)
+	// database.PrintList(users)
 
-	helper.Print()
-	helper.Time(a)
+	for i := 0; i < 10; i++ {
+		fmt.Println(generateuserdata.GenerateUserNameAndSurname())
+	}
 }
