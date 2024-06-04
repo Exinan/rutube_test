@@ -11,4 +11,5 @@ func main() {
 
 	helper.Print()
 	helper.Time(a)
+	helper.Time(a)
 }
