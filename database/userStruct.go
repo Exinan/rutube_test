@@ -2,7 +2,7 @@ package database
 
 import (
 	"fmt"
-	"rutube_test/helper"
+	generateHelper "rutube_test/generate_helper"
 	"time"
 )
 
@@ -32,10 +32,14 @@ func SetAllData(user *UserDataForBirth, name string, surname string, birthDate t
 
 func GenerateUserData(user *UserDataForBirth) {
 
-	name, surname := helper.GenerateUserNameAndSurname()
-	birthDate := helper.GenerateRandomDate(1990, 2006)
+	name, surname := generateHelper.GenerateUserNameAndSurname()
+	birthDate := generateHelper.GenerateRandomDate(1990, 2006)
 
 	SetAllData(user, name, surname, birthDate)
+}
+
+func (user *UserDataForBirth) GenerateUserData() {
+	GenerateUserData(user)
 }
 
 func PrintUser(user UserDataForBirth) {
