@@ -3,6 +3,7 @@ package database
 import (
 	"fmt"
 	"sync"
+	"time"
 )
 
 type ListManager struct {
@@ -45,4 +46,31 @@ func (listManager *ListManager) GenerateUserList(size int, wg *sync.WaitGroup) {
 	var tmpUserList UserList
 	tmpUserList.GenerateUserList(size)
 	listManager.AddUserList(tmpUserList)
+}
+
+func (listManager *ListManager) CheckBirthDayForAllLists(currentDay time.Time) {
+	var wg sync.WaitGroup
+	for _, userList := range listManager.UserLists {
+		wg.Add(1)
+		CheckBirthdays(userList, currentDay, &wg)
+	}
+	wg.Wait()
+}
+
+func CheckBirthdays(userList UserList, checkDate time.Time, wg *sync.WaitGroup) { //not optimized
+	defer wg.Done()
+	for _, user := range userList.GetData() {
+		year := checkDate.Year()
+
+		//If it's not a leap year and the user's birthday is on the 29th, it will count as the 28th
+		if user.BirthDate.Month() == 2 && checkDate.Day() == 29 && !(year%4 == 0 && (year%100 != 0 || year%400 == 0)) {
+			if checkDate.Day() == 28 && user.BirthDate.Month() == checkDate.Month() {
+				fmt.Printf("С днем рождения, %s!\n", user.Name)
+				continue
+			}
+		}
+		if user.BirthDate.Day() == checkDate.Day() && user.BirthDate.Month() == checkDate.Month() {
+			fmt.Printf("С днем рождения, %s!\n", user.Name)
+		}
+	}
 }

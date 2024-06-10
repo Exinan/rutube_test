@@ -16,6 +16,10 @@ func (userList *UserList) GetId(name string, surname string) []int {
 	return result
 }
 
+func (userList *UserList) GetData() []UserDataForBirth {
+	return userList.UserList
+}
+
 func (userList *UserList) ChangeUserData(id int, newUserData UserDataForBirth) {
 	if len(userList.UserList) > id && id >= 0 {
 		userList.UserList[id].SetData(newUserData)
