@@ -28,10 +28,17 @@ func (userList *UserList) AddUser(user UserDataForBirth) {
 	userList.UserList = append(userList.UserList, user)
 }
 
-func (userList *UserList) GenerateUserList(n int) {
-	for i := 0; i < n; i++ {
+func (userList *UserList) GenerateUserList(size int) {
+	for i := 0; i < size; i++ {
 		var user UserDataForBirth
 		user.GenerateUserData()
+		userList.AddUser(user)
+	}
+}
+
+func (userList *UserList) CreateUserList(size int) { //create empty user list
+	for i := 0; i < size; i++ {
+		var user UserDataForBirth
 		userList.AddUser(user)
 	}
 }
@@ -49,7 +56,7 @@ func (userList *UserList) DeleteUser(id int) {
 }
 
 func (userList *UserList) PrintAllUsers() {
-	fmt.Println()
+	fmt.Println("----------")
 	for _, user := range userList.UserList {
 		user.PrintUser()
 	}
