@@ -2,24 +2,15 @@ package main
 
 import (
 	"rutube_test/database"
+	"time"
 )
 
-func addOne(users []database.UserDataForBirth) []database.UserDataForBirth {
-	var tmp database.UserDataForBirth
-	tmp.GenerateUserData()
-	users = append(users, tmp)
-	return users
-}
-
 func main() {
-	var users []database.UserDataForBirth
-	for i := 0; i < 10; i++ {
-		users = addOne(users)
-	}
+	var userList database.UserList
 
-	if users == nil {
-	}
-	for _, user := range users {
-		database.PrintUser(user)
-	}
+	userList.GenerateUserList(10)
+	userList.ChangeUserData(0, database.UserDataForBirth{"Костя", "Черпачок", time.Now()})
+	userList.PrintAllUsers()
+	userList.DeleteUser(0)
+	userList.PrintAllUsers()
 }

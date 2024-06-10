@@ -62,5 +62,5 @@ func GenerateUserNameAndSurname() (string, string) {
 		"Воробьев", "Федоров", "Михайлов", "Беляев", "Тарасов", "Белов", "Комаров",
 		"Орлов", "Киселев", "Макаров", "Андреев"}
 
-	return names[rng.Intn(len(names)+1)], surnames[rng.Intn(len(surnames))+1]
+	return names[rng.Intn(len(names))], surnames[rng.Intn(len(surnames))]
 }

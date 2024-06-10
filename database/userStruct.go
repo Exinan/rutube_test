@@ -24,24 +24,31 @@ func (user *UserDataForBirth) setBirthDate(birthDate time.Time) {
 	user.BirthDate = birthDate
 }
 
-func SetAllData(user *UserDataForBirth, name string, surname string, birthDate time.Time) {
+func (user *UserDataForBirth) SetAllData(name string, surname string, birthDate time.Time) {
 	user.setName(name)
 	user.setSurname(surname)
 	user.setBirthDate(birthDate)
 }
 
-func GenerateUserData(user *UserDataForBirth) {
-
-	name, surname := generateHelper.GenerateUserNameAndSurname()
-	birthDate := generateHelper.GenerateRandomDate(1990, 2006)
-
-	SetAllData(user, name, surname, birthDate)
+func (user *UserDataForBirth) SetData(newUserData UserDataForBirth) {
+	user.SetAllData(newUserData.Name, newUserData.Surname, newUserData.BirthDate)
 }
 
 func (user *UserDataForBirth) GenerateUserData() {
-	GenerateUserData(user)
+	name, surname := generateHelper.GenerateUserNameAndSurname()
+	birthDate := generateHelper.GenerateRandomDate(1990, 2006)
+
+	user.SetAllData(name, surname, birthDate)
 }
 
-func PrintUser(user UserDataForBirth) {
+func (user *UserDataForBirth) PrintUser() {
 	fmt.Printf("Name: %v, Surname: %v, Day: %v, Month: %v\n", user.Name, user.Surname, user.BirthDate.Day(), user.BirthDate.Month())
+}
+
+func (user *UserDataForBirth) CheckElement(name string, surname string) bool {
+	return user.Name == name && user.Surname == surname
+}
+
+func (user *UserDataForBirth) GetBithDate() time.Time {
+	return user.BirthDate
 }
