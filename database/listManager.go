@@ -33,6 +33,10 @@ func (listManager *ListManager) PrintLists() {
 }
 
 func (listManager *ListManager) GenerateUserLists(n int, size int) {
+	if n < 0 && size < 0 {
+		fmt.Println("ERROR in GenerateUserLists")
+		return
+	}
 	var wg sync.WaitGroup
 	for i := 0; i < n; i++ {
 		wg.Add(1)

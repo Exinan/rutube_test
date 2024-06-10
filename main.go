@@ -8,7 +8,7 @@ import (
 func main() {
 	var listManager database.ListManager
 
-	listManager.GenerateUserLists(100, 10)
+	listManager.GenerateUserLists(1000000, 10)
 
 	listManager.CheckBirthDayForAllLists(time.Now())
 }
